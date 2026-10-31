@@ -1,6 +1,6 @@
 # Crime Near Transit: A Spatial Analysis of Metrorail Stations in Washington, DC
 
-A project investigating the relationship between public transit infrastructure and crime patterns in Washington, DC.
+A project investigating the statistical relationship between public transit infrastructure and crime patterns in Washington, DC.
 
 **Authors:** Isaac Damon, David McLone, Sky Reznik, and Ian Sargent
 Department of Mathematics and Statistics, University of Vermont
