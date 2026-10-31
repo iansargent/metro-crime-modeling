@@ -61,13 +61,13 @@ Model-ready panels are in `Data/Combined/`. `nb_data.csv` is the tract × year �
 
 The crime counts are overdispersed (dispersion ≈ 2.83), so negative binomial regression is used instead of Poisson. Separate models are fit for violent and property crime with `fixest::fenegbin`. The exploratory models used `MASS::glm.nb`.
 
-$$
+```math
 \begin{aligned}
-\ln\left(\frac{\mu_{itm}}{\text{Pop}_{itm}}\right) = {} & \beta_0 + \beta_1\,\text{Metro}_{itm} + \beta_2\,\text{SES}_{itm} + \beta_3\,\text{Race}_{itm} + \beta_4\,\text{Housing}_{itm} \\
-& + \beta_5\,(\text{Buffer}_{400} \times \text{Buffer}_{800})_{itm} + \beta_6\,(\text{Dist} \times \text{Pct\_Black})_{itm} \\
+\ln\left(\frac{\mu_{itm}}{\text{Pop}_{itm}}\right) = {} & \beta_0 + \beta_1 \text{Metro}_{itm} + \beta_2 \text{SES}_{itm} + \beta_3 \text{Race}_{itm} + \beta_4 \text{Housing}_{itm} \\
+& + \beta_5 (\text{Buffer}_{400} \times \text{Buffer}_{800})_{itm} + \beta_6 (\text{Dist} \times \text{PctBlack})_{itm} \\
 & + \alpha_i + \gamma_t + \delta_m + \varepsilon_{itm}
 \end{aligned}
-$$
+```
 
 | Term | What it contains |
 |---|---|
@@ -136,7 +136,7 @@ The algorithm is in [`Scripts/Analysis/Flow Net/safe_path copy.ipynb`](Scripts/A
 3. **Snap crimes to edges.** Each crime within `buffer_dist = 41.5` m of an edge is assigned to that edge. One crime can count toward several edges, for example both sides of a street.
 4. **Weight the edges.** Each edge gets a crime-penalized weight:
 
-   $$\text{crime\_weight}_e = \ell_e \cdot \left(1 + \alpha \cdot \tilde{d}_e\right)$$
+   $$\text{CrimeWeight}_e = \ell_e \cdot \left(1 + \alpha \cdot \tilde{d}_e\right)$$
 
    Here $\ell_e$ is the edge length and $\tilde{d}_e$ is its normalized crime density. The parameter α ≥ 0 sets how strongly the router avoids crime; α = 0 gives the ordinary shortest path.
 5. **Route.** Run Dijkstra's algorithm on `crime_weight`, and separately on `length` as a baseline.
